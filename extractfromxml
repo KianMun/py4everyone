@@ -1,0 +1,17 @@
+import urllib.request, urllib.parse, urllib.error
+import xml.etree.ElementTree as ET
+from urllib.request import urlopen
+
+url = 'http://py4e-data.dr-chuck.net/comments_84645.xml'
+
+data = urlopen(url).read()
+
+tree = ET.fromstring(data)
+
+counts = tree.findall('.//count')
+
+totalcount=0
+for count in counts:
+    totalcount = totalcount + int(count.text)
+
+print (totalcount)
